@@ -1,36 +1,115 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Huzaifa Ibrar - Portfolio
+
+A modern portfolio website built with Next.js, React, and GSAP animations for Huzaifa Ibrar, Full Stack Developer.
+
+## Features
+
+- Modern design with smooth animations
+- Responsive layout for all devices
+- Preloader with GSAP animations
+- Interactive sections with scroll animations
+- Contact form
+- SEO optimized
+
+## Technologies Used
+
+- **Next.js**: React framework for server-rendered applications
+- **React**: JavaScript library for building user interfaces
+- **TypeScript**: For type safety
+- **GSAP**: Animation library for smooth transitions and effects
+- **Tailwind CSS**: Utility-first CSS framework
+- **Font Awesome**: For icons
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
 
+- Node.js 14.x or higher
+- npm or yarn
+
+### Installation
+
+1. Clone the repository:
+```bash
+git clone https://github.com/huzaifa-ibrar/huzaifasportfolio.git
+cd huzaifasportfolio
+```
+
+2. Install dependencies:
+```bash
+npm install
+# or
+yarn install
+```
+
+3. Run the development server:
 ```bash
 npm run dev
 # or
 yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+4. Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Deployment to Vercel
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+This project is set up for easy deployment to Vercel. Follow these steps:
 
-## Learn More
+1. Create a Vercel account at [vercel.com](https://vercel.com) if you don't have one.
 
-To learn more about Next.js, take a look at the following resources:
+2. Install the Vercel CLI:
+```bash
+npm install -g vercel
+# or
+yarn global add vercel
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+3. Log in to Vercel:
+```bash
+vercel login
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+4. Deploy the project:
+```bash
+vercel
+```
 
-## Deploy on Vercel
+5. For production deployment:
+```bash
+vercel --prod
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Alternatively, you can connect your GitHub repository to Vercel for automatic deployments:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+1. Push your code to GitHub
+2. Import your project from GitHub on the Vercel dashboard
+3. Configure your project settings
+4. Deploy!
+
+## Project Structure
+
+```
+huzaifasportfolio/
+├── app/               # Next.js app directory
+│   ├── components/    # Reusable UI components
+│   ├── sections/      # Main page sections
+│   ├── assets/        # Static assets
+│   ├── globals.css    # Global styles
+│   ├── layout.tsx     # Root layout
+│   └── page.tsx       # Main page
+├── public/            # Public assets
+├── next.config.ts     # Next.js configuration
+├── package.json       # Dependencies and scripts
+├── tsconfig.json      # TypeScript configuration
+└── tailwind.config.js # Tailwind CSS configuration
+```
+
+## License
+
+This project is open source and available under the [MIT License](LICENSE).
+
+## Contact
+
+Huzaifa Ibrar - [huzaifa.57@hotmail.com](mailto:huzaifa.57@hotmail.com)
+
+Project Link: [https://github.com/huzaifa-ibrar/huzaifasportfolio](https://github.com/huzaifa-ibrar/huzaifasportfolio)
