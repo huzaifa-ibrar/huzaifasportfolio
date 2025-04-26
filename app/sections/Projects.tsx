@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGithub, faJs, faJava, faNodeJs, faReact } from '@fortawesome/free-brands-svg-icons';
@@ -87,6 +87,36 @@ const Projects = () => {
     }
   };
 
+  // Handle 3D tilt effect on mouse move
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    const card = e.currentTarget;
+    const rect = card.getBoundingClientRect();
+    const x = e.clientX - rect.left; // x position within the card
+    const y = e.clientY - rect.top; // y position within the card
+
+    // Calculate rotation based on mouse position
+    const centerX = rect.width / 2;
+    const centerY = rect.height / 2;
+    const rotateX = (y - centerY) / 10; // Vertical tilt (inverted)
+    const rotateY = (centerX - x) / 10; // Horizontal tilt
+
+    // Apply the transform
+    card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.05, 1.05, 1.05)`;
+    card.style.boxShadow = `
+      0 5px 15px rgba(0, 0, 0, 0.1),
+      ${rotateY / 3}px ${rotateX / 3}px 15px rgba(168, 85, 247, 0.2)
+    `;
+    card.style.zIndex = "10";
+  };
+
+  // Reset card when mouse leaves
+  const handleMouseLeave = (e: React.MouseEvent<HTMLDivElement>) => {
+    const card = e.currentTarget;
+    card.style.transform = "perspective(1000px) rotateX(0) rotateY(0) scale3d(1, 1, 1)";
+    card.style.boxShadow = "0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)";
+    card.style.zIndex = "1";
+  };
+
   return (
     <section 
       id="projects" 
@@ -96,9 +126,9 @@ const Projects = () => {
       <div className="container mx-auto px-4">
         <h2 
           ref={headingRef}
-          className="text-3xl md:text-4xl font-bold text-center mb-16 text-slate-800"
+          className="text-3xl md:text-4xl font-bold text-center mb-16 text-secondary-800"
         >
-          My <span className="text-sky-500">Projects</span>
+          My <span className="text-primary-500">Projects</span>
         </h2>
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -106,30 +136,37 @@ const Projects = () => {
             <div 
               key={index}
               ref={addToRefs}
-              className="bg-slate-50 rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow glow-effect"
+              className="bg-secondary-50 rounded-lg overflow-hidden transition-all duration-300"
+              style={{
+                transformStyle: 'preserve-3d',
+                transform: 'perspective(1000px)',
+                boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)'
+              }}
+              onMouseMove={handleMouseMove}
+              onMouseLeave={handleMouseLeave}
             >
-              <div className="h-2 bg-sky-500"></div>
+              <div className="h-2 bg-primary-500"></div>
               
               <div className="p-6">
                 <div className="flex justify-between items-start mb-4">
-                  <h3 className="text-xl font-semibold text-slate-800">{project.title}</h3>
+                  <h3 className="text-xl font-semibold text-secondary-800">{project.title}</h3>
                   
                   <a 
                     href={project.github}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-slate-600 hover:text-sky-500 transition-colors"
+                    className="text-secondary-600 hover:text-primary-500 transition-colors"
                   >
                     <FontAwesomeIcon icon={faGithub} size="lg" />
                   </a>
                 </div>
                 
-                <div className="flex items-center mb-4 text-slate-600 text-sm">
+                <div className="flex items-center mb-4 text-secondary-600 text-sm">
                   <FontAwesomeIcon icon={faCalendarAlt} className="mr-2" />
                   <span>{project.date}</span>
                 </div>
                 
-                <p className="text-slate-600 mb-6">
+                <p className="text-secondary-600 mb-6">
                   {project.description}
                 </p>
                 
@@ -139,7 +176,7 @@ const Projects = () => {
                       <FontAwesomeIcon 
                         key={i}
                         icon={icon} 
-                        className="text-sky-500" 
+                        className="text-primary-500" 
                         size="lg"
                       />
                     ))}
@@ -149,7 +186,7 @@ const Projects = () => {
                     {project.tech.map((tech, i) => (
                       <span 
                         key={i}
-                        className="px-2 py-1 bg-sky-100 text-sky-700 rounded"
+                        className="px-2 py-1 bg-primary-100 text-primary-700 rounded"
                       >
                         {tech}
                       </span>
@@ -166,7 +203,7 @@ const Projects = () => {
             href="https://github.com/huzaifa-ibrar"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center px-6 py-3 bg-sky-500 text-white rounded-full font-medium hover:bg-sky-600 transition-colors duration-300 glow-effect"
+            className="inline-flex items-center px-6 py-3 bg-primary-500 text-white rounded-full font-medium hover:bg-primary-600 transition-colors duration-300"
           >
             <span className="mr-2">See More on GitHub</span>
             <FontAwesomeIcon icon={faExternalLinkAlt} />

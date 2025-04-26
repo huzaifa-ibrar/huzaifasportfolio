@@ -2,8 +2,6 @@ import './globals.css';
 import type { Metadata } from 'next';
 import { config } from '@fortawesome/fontawesome-svg-core';
 import '@fortawesome/fontawesome-svg-core/styles.css';
-import StarBackground from './components/StarBackground';
-import CursorGlow from './components/CursorGlow';
 
 // Initialize Font Awesome configuration
 config.autoAddCss = false;
@@ -25,8 +23,6 @@ export default function RootLayout({
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       </head>
       <body className="bg-secondary-50 text-secondary-900 font-sans antialiased">
-        <StarBackground />
-        <CursorGlow />
         {children}
       </body>
     </html>

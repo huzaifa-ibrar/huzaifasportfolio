@@ -2,6 +2,8 @@ import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCode, faDatabase, faServer, faCloud } from '@fortawesome/free-solid-svg-icons';
+import { FaJsSquare, FaReact, FaNodeJs, FaAws, FaCss3Alt } from 'react-icons/fa';
+import { SiTypescript, SiRedux } from 'react-icons/si';
 
 const About = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -76,7 +78,7 @@ const About = () => {
         }
 
         // Individual skill items animation with better staggering
-        if (skillsRef.current) {
+        if (skillItemsRef.current.length > 0) {
           skillItemsRef.current.forEach((item, index) => {
             gsap.fromTo(
               item,
@@ -129,15 +131,15 @@ const About = () => {
       className="py-24 bg-gradient-to-b from-white to-slate-50 relative"
     >
       {/* Background decoration */}
-      <div className="absolute top-0 right-0 w-1/3 h-1/3 bg-sky-50 opacity-40 rounded-bl-full"></div>
-      <div className="absolute bottom-0 left-0 w-1/4 h-1/4 bg-indigo-50 opacity-40 rounded-tr-full"></div>
+      <div className="absolute top-0 right-0 w-1/3 h-1/3 bg-purple-50 opacity-40 rounded-bl-full"></div>
+      <div className="absolute bottom-0 left-0 w-1/4 h-1/4 bg-purple-50 opacity-40 rounded-tr-full"></div>
       
       <div className="container mx-auto px-4 relative z-10">
         <h2 
           ref={headingRef}
-          className="text-4xl md:text-5xl font-bold text-center mb-16 text-slate-800"
+          className="text-3xl md:text-4xl font-bold text-center mb-16 text-slate-800"
         >
-          About <span className="text-sky-500">Me</span>
+          About <span className="text-purple-500">Me</span>
         </h2>
         
         <div 
@@ -159,37 +161,37 @@ const About = () => {
 
         <div ref={skillsRef} className="max-w-6xl mx-auto">
           <h3 className="text-2xl md:text-3xl font-semibold text-center mb-14 text-slate-800">
-            Technical <span className="text-sky-500">Skills</span>
+            Technical <span className="text-purple-500">Skills</span>
           </h3>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 px-4">
             <div 
               ref={addToRefs}
-              className="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow border border-slate-100 hover:border-sky-100"
+              className="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow border border-slate-100 hover:border-purple-100"
             >
-              <div className="text-sky-500 text-5xl mb-6 flex justify-center">
+              <div className="text-purple-500 text-5xl mb-6 flex justify-center">
                 <FontAwesomeIcon icon={faCode} />
               </div>
               <h4 className="text-xl font-semibold mb-6 text-center text-slate-800">Languages</h4>
               <ul className="space-y-3 text-slate-600">
                 <li className="flex items-center">
-                  <span className="w-2 h-2 bg-sky-500 rounded-full mr-3"></span>
+                  <span className="w-2 h-2 bg-purple-500 rounded-full mr-3"></span>
                   Java
                 </li>
                 <li className="flex items-center">
-                  <span className="w-2 h-2 bg-sky-500 rounded-full mr-3"></span>
+                  <span className="w-2 h-2 bg-purple-500 rounded-full mr-3"></span>
                   Python
                 </li>
                 <li className="flex items-center">
-                  <span className="w-2 h-2 bg-sky-500 rounded-full mr-3"></span>
+                  <span className="w-2 h-2 bg-purple-500 rounded-full mr-3"></span>
                   JavaScript/HTML/CSS
                 </li>
                 <li className="flex items-center">
-                  <span className="w-2 h-2 bg-sky-500 rounded-full mr-3"></span>
+                  <span className="w-2 h-2 bg-purple-500 rounded-full mr-3"></span>
                   C
                 </li>
                 <li className="flex items-center">
-                  <span className="w-2 h-2 bg-sky-500 rounded-full mr-3"></span>
+                  <span className="w-2 h-2 bg-purple-500 rounded-full mr-3"></span>
                   Bash
                 </li>
               </ul>
@@ -197,31 +199,31 @@ const About = () => {
 
             <div 
               ref={addToRefs}
-              className="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow border border-slate-100 hover:border-sky-100"
+              className="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow border border-slate-100 hover:border-purple-100"
             >
-              <div className="text-sky-500 text-5xl mb-6 flex justify-center">
+              <div className="text-purple-500 text-5xl mb-6 flex justify-center">
                 <FontAwesomeIcon icon={faServer} />
               </div>
               <h4 className="text-xl font-semibold mb-6 text-center text-slate-800">Frameworks</h4>
               <ul className="space-y-3 text-slate-600">
                 <li className="flex items-center">
-                  <span className="w-2 h-2 bg-sky-500 rounded-full mr-3"></span>
+                  <span className="w-2 h-2 bg-purple-500 rounded-full mr-3"></span>
                   Bootstrap
                 </li>
                 <li className="flex items-center">
-                  <span className="w-2 h-2 bg-sky-500 rounded-full mr-3"></span>
+                  <span className="w-2 h-2 bg-purple-500 rounded-full mr-3"></span>
                   React
                 </li>
                 <li className="flex items-center">
-                  <span className="w-2 h-2 bg-sky-500 rounded-full mr-3"></span>
+                  <span className="w-2 h-2 bg-purple-500 rounded-full mr-3"></span>
                   Express
                 </li>
                 <li className="flex items-center">
-                  <span className="w-2 h-2 bg-sky-500 rounded-full mr-3"></span>
+                  <span className="w-2 h-2 bg-purple-500 rounded-full mr-3"></span>
                   Next.js
                 </li>
                 <li className="flex items-center">
-                  <span className="w-2 h-2 bg-sky-500 rounded-full mr-3"></span>
+                  <span className="w-2 h-2 bg-purple-500 rounded-full mr-3"></span>
                   JavaFX
                 </li>
               </ul>
@@ -229,31 +231,31 @@ const About = () => {
 
             <div 
               ref={addToRefs}
-              className="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow border border-slate-100 hover:border-sky-100"
+              className="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow border border-slate-100 hover:border-purple-100"
             >
-              <div className="text-sky-500 text-5xl mb-6 flex justify-center">
+              <div className="text-purple-500 text-5xl mb-6 flex justify-center">
                 <FontAwesomeIcon icon={faDatabase} />
               </div>
               <h4 className="text-xl font-semibold mb-6 text-center text-slate-800">Databases</h4>
               <ul className="space-y-3 text-slate-600">
                 <li className="flex items-center">
-                  <span className="w-2 h-2 bg-sky-500 rounded-full mr-3"></span>
+                  <span className="w-2 h-2 bg-purple-500 rounded-full mr-3"></span>
                   MongoDB
                 </li>
                 <li className="flex items-center">
-                  <span className="w-2 h-2 bg-sky-500 rounded-full mr-3"></span>
+                  <span className="w-2 h-2 bg-purple-500 rounded-full mr-3"></span>
                   OracleDB
                 </li>
                 <li className="flex items-center">
-                  <span className="w-2 h-2 bg-sky-500 rounded-full mr-3"></span>
+                  <span className="w-2 h-2 bg-purple-500 rounded-full mr-3"></span>
                   MySQL
                 </li>
                 <li className="flex items-center">
-                  <span className="w-2 h-2 bg-sky-500 rounded-full mr-3"></span>
+                  <span className="w-2 h-2 bg-purple-500 rounded-full mr-3"></span>
                   PostgreSQL
                 </li>
                 <li className="flex items-center">
-                  <span className="w-2 h-2 bg-sky-500 rounded-full mr-3"></span>
+                  <span className="w-2 h-2 bg-purple-500 rounded-full mr-3"></span>
                   SQL
                 </li>
               </ul>
@@ -261,31 +263,31 @@ const About = () => {
 
             <div 
               ref={addToRefs}
-              className="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow border border-slate-100 hover:border-sky-100"
+              className="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow border border-slate-100 hover:border-purple-100"
             >
-              <div className="text-sky-500 text-5xl mb-6 flex justify-center">
+              <div className="text-purple-500 text-5xl mb-6 flex justify-center">
                 <FontAwesomeIcon icon={faCloud} />
               </div>
               <h4 className="text-xl font-semibold mb-6 text-center text-slate-800">DevOps/Cloud</h4>
               <ul className="space-y-3 text-slate-600">
                 <li className="flex items-center">
-                  <span className="w-2 h-2 bg-sky-500 rounded-full mr-3"></span>
+                  <span className="w-2 h-2 bg-purple-500 rounded-full mr-3"></span>
                   GitAction
                 </li>
                 <li className="flex items-center">
-                  <span className="w-2 h-2 bg-sky-500 rounded-full mr-3"></span>
+                  <span className="w-2 h-2 bg-purple-500 rounded-full mr-3"></span>
                   AWS Services
                 </li>
                 <li className="flex items-center">
-                  <span className="w-2 h-2 bg-sky-500 rounded-full mr-3"></span>
+                  <span className="w-2 h-2 bg-purple-500 rounded-full mr-3"></span>
                   Microsoft Azure
                 </li>
                 <li className="flex items-center">
-                  <span className="w-2 h-2 bg-sky-500 rounded-full mr-3"></span>
+                  <span className="w-2 h-2 bg-purple-500 rounded-full mr-3"></span>
                   Kubernetes
                 </li>
                 <li className="flex items-center">
-                  <span className="w-2 h-2 bg-sky-500 rounded-full mr-3"></span>
+                  <span className="w-2 h-2 bg-purple-500 rounded-full mr-3"></span>
                   Docker
                 </li>
               </ul>

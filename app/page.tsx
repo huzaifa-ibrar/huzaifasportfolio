@@ -9,6 +9,7 @@ import Experience from './sections/Experience';
 import Projects from './sections/Projects';
 import Contact from './sections/Contact';
 import Footer from './components/Footer';
+import CursorTrail from './components/CursorTrail';
 
 export default function Home() {
   const [loading, setLoading] = useState(true);
@@ -25,6 +26,7 @@ export default function Home() {
   return (
     <main className="min-h-screen relative">
       {loading && <Preloader />}
+      <CursorTrail />
       <Navbar />
       <Hero />
       <About />

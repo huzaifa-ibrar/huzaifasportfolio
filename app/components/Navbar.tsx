@@ -82,17 +82,17 @@ const Navbar = () => {
     >
       <div className="container-custom py-4">
         <div className="flex justify-between items-center">
-          <div className="text-xl font-bold text-primary-500 glow-text">
+          <div className="text-xl font-bold text-primary-500">
             Huzaifa Ibrar
           </div>
           
           {/* Desktop Menu */}
           <div className="hidden md:flex space-x-6">
-            <a href="#home" className="text-secondary-700 hover:text-primary-500 transition-colors hover:glow-text">Home</a>
-            <a href="#about" className="text-secondary-700 hover:text-primary-500 transition-colors hover:glow-text">About</a>
-            <a href="#experience" className="text-secondary-700 hover:text-primary-500 transition-colors hover:glow-text">Experience</a>
-            <a href="#projects" className="text-secondary-700 hover:text-primary-500 transition-colors hover:glow-text">Projects</a>
-            <a href="#contact" className="text-secondary-700 hover:text-primary-500 transition-colors hover:glow-text">Contact</a>
+            <a href="#home" className="text-secondary-700 hover:text-primary-500 transition-colors">Home</a>
+            <a href="#about" className="text-secondary-700 hover:text-primary-500 transition-colors">About</a>
+            <a href="#experience" className="text-secondary-700 hover:text-primary-500 transition-colors">Experience</a>
+            <a href="#projects" className="text-secondary-700 hover:text-primary-500 transition-colors">Projects</a>
+            <a href="#contact" className="text-secondary-700 hover:text-primary-500 transition-colors">Contact</a>
           </div>
           
           {/* Social Icons */}
@@ -101,7 +101,7 @@ const Navbar = () => {
               href="https://github.com/huzaifa-ibrar" 
               target="_blank" 
               rel="noopener noreferrer"
-              className="text-secondary-700 hover:text-primary-500 transition-colors glow-effect"
+              className="text-secondary-700 hover:text-primary-500 transition-colors"
               aria-label="GitHub"
             >
               <FontAwesomeIcon icon={faGithub} />
@@ -110,7 +110,7 @@ const Navbar = () => {
               href="https://linkedin.com/in/huzaifa-ibrar" 
               target="_blank" 
               rel="noopener noreferrer"
-              className="text-secondary-700 hover:text-primary-500 transition-colors glow-effect"
+              className="text-secondary-700 hover:text-primary-500 transition-colors"
               aria-label="LinkedIn"
             >
               <FontAwesomeIcon icon={faLinkedin} />
@@ -139,35 +139,35 @@ const Navbar = () => {
             <div className="flex flex-col space-y-4">
               <a 
                 href="#home" 
-                className="text-secondary-700 hover:text-primary-500 transition-colors px-2 hover:glow-text"
+                className="text-secondary-700 hover:text-primary-500 transition-colors px-2"
                 onClick={toggleMenu}
               >
                 Home
               </a>
               <a 
                 href="#about" 
-                className="text-secondary-700 hover:text-primary-500 transition-colors px-2 hover:glow-text"
+                className="text-secondary-700 hover:text-primary-500 transition-colors px-2"
                 onClick={toggleMenu}
               >
                 About
               </a>
               <a 
                 href="#experience" 
-                className="text-secondary-700 hover:text-primary-500 transition-colors px-2 hover:glow-text"
+                className="text-secondary-700 hover:text-primary-500 transition-colors px-2"
                 onClick={toggleMenu}
               >
                 Experience
               </a>
               <a 
                 href="#projects" 
-                className="text-secondary-700 hover:text-primary-500 transition-colors px-2 hover:glow-text"
+                className="text-secondary-700 hover:text-primary-500 transition-colors px-2"
                 onClick={toggleMenu}
               >
                 Projects
               </a>
               <a 
                 href="#contact" 
-                className="text-secondary-700 hover:text-primary-500 transition-colors px-2 hover:glow-text"
+                className="text-secondary-700 hover:text-primary-500 transition-colors px-2"
                 onClick={toggleMenu}
               >
                 Contact
@@ -178,7 +178,7 @@ const Navbar = () => {
                   href="https://github.com/huzaifa-ibrar" 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="text-secondary-700 hover:text-primary-500 transition-colors glow-effect"
+                  className="text-secondary-700 hover:text-primary-500 transition-colors"
                   aria-label="GitHub"
                 >
                   <FontAwesomeIcon icon={faGithub} />
@@ -187,7 +187,7 @@ const Navbar = () => {
                   href="https://linkedin.com/in/huzaifa-ibrar" 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="text-secondary-700 hover:text-primary-500 transition-colors glow-effect"
+                  className="text-secondary-700 hover:text-primary-500 transition-colors"
                   aria-label="LinkedIn"
                 >
                   <FontAwesomeIcon icon={faLinkedin} />

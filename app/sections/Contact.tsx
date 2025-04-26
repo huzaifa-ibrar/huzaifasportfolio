@@ -137,7 +137,7 @@ const Contact = () => {
           ref={headingRef}
           className="text-3xl md:text-4xl font-bold text-center mb-16 text-slate-800"
         >
-          Get In <span className="text-sky-500">Touch</span>
+          Get in <span className="text-purple-500">Touch</span>
         </h2>
         
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
@@ -157,7 +157,7 @@ const Contact = () => {
                 value={formData.name}
                 onChange={handleChange}
                 required
-                className="w-full px-4 py-2 border border-slate-300 rounded-md focus:outline-none focus:ring-2 focus:ring-sky-500 focus:border-transparent"
+                className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500"
               />
             </div>
             
@@ -172,7 +172,7 @@ const Contact = () => {
                 value={formData.email}
                 onChange={handleChange}
                 required
-                className="w-full px-4 py-2 border border-slate-300 rounded-md focus:outline-none focus:ring-2 focus:ring-sky-500 focus:border-transparent"
+                className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500"
               />
             </div>
             
@@ -187,7 +187,7 @@ const Contact = () => {
                 value={formData.subject}
                 onChange={handleChange}
                 required
-                className="w-full px-4 py-2 border border-slate-300 rounded-md focus:outline-none focus:ring-2 focus:ring-sky-500 focus:border-transparent"
+                className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500"
               />
             </div>
             
@@ -201,17 +201,18 @@ const Contact = () => {
                 value={formData.message}
                 onChange={handleChange}
                 required
-                rows={5}
-                className="w-full px-4 py-2 border border-slate-300 rounded-md focus:outline-none focus:ring-2 focus:ring-sky-500 focus:border-transparent"
+                className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500 min-h-[120px]"
               ></textarea>
             </div>
             
             <button
               type="submit"
               disabled={isSubmitting}
-              className={`w-full py-3 px-4 ${
-                isSubmitting ? 'bg-slate-400' : 'bg-sky-500 hover:bg-sky-600'
-              } text-white rounded-md font-medium transition-colors flex items-center justify-center`}
+              className={`w-full py-3 px-6 text-white font-medium rounded-md ${
+                isSubmitting
+                  ? 'bg-gray-400 cursor-not-allowed'
+                  : 'bg-purple-500 hover:bg-purple-600 transition duration-300'
+              }`}
             >
               {isSubmitting ? (
                 <span>Sending...</span>
@@ -247,14 +248,14 @@ const Contact = () => {
               
               <div className="space-y-6">
                 <div className="flex items-start">
-                  <div className="text-sky-500 mt-1 mr-4">
-                    <FontAwesomeIcon icon={faEnvelope} />
+                  <div className="text-purple-500 mt-1 mr-4">
+                    <FontAwesomeIcon icon={faEnvelope} className="text-purple-500 mr-4" size="lg" />
                   </div>
                   <div>
                     <h4 className="text-lg font-medium text-slate-700">Email</h4>
                     <a 
                       href="mailto:huzaifa.57@hotmail.com" 
-                      className="text-slate-600 hover:text-sky-500 transition-colors"
+                      className="text-slate-600 hover:text-purple-500 transition-colors"
                     >
                       huzaifa.57@hotmail.com
                     </a>
@@ -262,14 +263,14 @@ const Contact = () => {
                 </div>
                 
                 <div className="flex items-start">
-                  <div className="text-sky-500 mt-1 mr-4">
-                    <FontAwesomeIcon icon={faPhone} />
+                  <div className="text-purple-500 mt-1 mr-4">
+                    <FontAwesomeIcon icon={faPhone} className="text-purple-500 mr-4" size="lg" />
                   </div>
                   <div>
                     <h4 className="text-lg font-medium text-slate-700">Phone</h4>
                     <a 
                       href="tel:+16475724056" 
-                      className="text-slate-600 hover:text-sky-500 transition-colors"
+                      className="text-slate-600 hover:text-purple-500 transition-colors"
                     >
                       (+1) 647-572-4056
                     </a>
@@ -277,8 +278,8 @@ const Contact = () => {
                 </div>
                 
                 <div className="flex items-start">
-                  <div className="text-sky-500 mt-1 mr-4">
-                    <FontAwesomeIcon icon={faMapMarkerAlt} />
+                  <div className="text-purple-500 mt-1 mr-4">
+                    <FontAwesomeIcon icon={faMapMarkerAlt} className="text-purple-500 mr-4" size="lg" />
                   </div>
                   <div>
                     <h4 className="text-lg font-medium text-slate-700">Location</h4>
@@ -298,7 +299,7 @@ const Contact = () => {
                   href="https://github.com/huzaifa-ibrar" 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="bg-slate-100 hover:bg-sky-100 text-slate-700 hover:text-sky-500 p-3 rounded-full transition-colors"
+                  className="bg-slate-100 hover:bg-purple-100 text-slate-700 hover:text-purple-500 p-3 rounded-full transition-colors"
                 >
                   <FontAwesomeIcon icon={faGithub} />
                 </a>
@@ -306,7 +307,7 @@ const Contact = () => {
                   href="https://linkedin.com/in/huzaifa-ibrar" 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="bg-slate-100 hover:bg-sky-100 text-slate-700 hover:text-sky-500 p-3 rounded-full transition-colors"
+                  className="bg-slate-100 hover:bg-purple-100 text-slate-700 hover:text-purple-500 p-3 rounded-full transition-colors"
                 >
                   <FontAwesomeIcon icon={faLinkedin} />
                 </a>
