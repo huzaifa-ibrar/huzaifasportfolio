@@ -110,7 +110,7 @@ const Contact = () => {
       // Reset status after 3 seconds
       setTimeout(() => {
         setSubmitStatus('idle');
-      }, 3000);
+      }, 6000);
     } catch (error) {
       console.error('Error sending message:', error);
       setSubmitStatus('error');
@@ -120,7 +120,7 @@ const Contact = () => {
       setTimeout(() => {
         setSubmitStatus('idle');
         setErrorMessage('');
-      }, 6000);
+      }, 10000);
     } finally {
       setIsSubmitting(false);
     }

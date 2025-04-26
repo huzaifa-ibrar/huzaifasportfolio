@@ -106,7 +106,7 @@ const Projects = () => {
             <div 
               key={index}
               ref={addToRefs}
-              className="bg-slate-50 rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow"
+              className="bg-slate-50 rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow glow-effect"
             >
               <div className="h-2 bg-sky-500"></div>
               
@@ -166,7 +166,7 @@ const Projects = () => {
             href="https://github.com/huzaifa-ibrar"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center px-6 py-3 bg-sky-500 text-white rounded-full font-medium hover:bg-sky-600 transition-colors duration-300"
+            className="inline-flex items-center px-6 py-3 bg-sky-500 text-white rounded-full font-medium hover:bg-sky-600 transition-colors duration-300 glow-effect"
           >
             <span className="mr-2">See More on GitHub</span>
             <FontAwesomeIcon icon={faExternalLinkAlt} />

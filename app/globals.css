@@ -36,6 +36,75 @@
   .card {
     @apply bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300;
   }
+
+  /* Glow effects */
+  .glow-effect {
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+    transition: all 0.3s ease;
+  }
+  
+  .glow-effect:hover {
+    transform: scale(1.03);
+    box-shadow: 0 0 20px rgba(14, 165, 233, 0.5);
+  }
+  
+  .glow-effect::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    z-index: -1;
+    background: linear-gradient(45deg, #0ea5e9, #3b82f6, #8b5cf6);
+    background-size: 400%;
+    animation: glowBorder 3s linear infinite;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    border-radius: inherit;
+  }
+  
+  .glow-effect:hover::before {
+    opacity: 1;
+  }
+  
+  @keyframes glowBorder {
+    0% { background-position: 0 0; }
+    50% { background-position: 400% 0; }
+    100% { background-position: 0 0; }
+  }
+  
+  .glow-text {
+    @apply text-transparent bg-clip-text bg-gradient-to-r from-primary-400 to-blue-500;
+  }
+  
+  .hover\:glow-text:hover {
+    @apply text-transparent bg-clip-text bg-gradient-to-r from-primary-400 to-blue-600;
+    text-shadow: 0 0 8px rgba(14, 165, 233, 0.3);
+  }
+  
+  .glow-border {
+    @apply relative border border-primary-500/50 transition-all duration-300;
+  }
+  
+  .glow-border:hover {
+    @apply border-primary-500 shadow-[0_0_15px_rgba(14,165,233,0.5)];
+  }
+  
+  /* Element scaling */
+  .scale-on-hover {
+    @apply transition-transform duration-300;
+  }
+  
+  .scale-on-hover:hover {
+    @apply transform scale-105;
+  }
+  
+  .scale-lg-on-hover:hover {
+    @apply transform scale-110;
+  }
 }
 
 /* For when the preloader is active */
@@ -45,18 +114,68 @@ body.loading {
 
 /* Custom scrollbar */
 ::-webkit-scrollbar {
-  width: 10px;
+  width: 8px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #cbd5e1;
+  background: #0f172a;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #0ea5e9;
-  border-radius: 5px;
+  background: #3b82f6;
+  border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #0284c7;
+  background: #0ea5e9;
+}
+
+/* Enlarge components for fullness */
+.section-content {
+  padding: 2rem 0;
+}
+
+@media (min-width: 768px) {
+  .section-content {
+    padding: 3rem 0;
+  }
+}
+
+@media (min-width: 1024px) {
+  .section-content {
+    padding: 4rem 0;
+  }
+}
+
+/* Star animation */
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0px); }
+}
+
+.floating {
+  animation: float 6s ease-in-out infinite;
+}
+
+.floating-slow {
+  animation: float 8s ease-in-out infinite;
+}
+
+.floating-fast {
+  animation: float 4s ease-in-out infinite;
+}
+
+/* Enhance hover effects for buttons and links */
+.btn-primary:hover {
+  box-shadow: 0 0 15px rgba(14, 165, 233, 0.7);
+}
+
+a:hover, button:hover {
+  text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+}
+
+/* When preloader is active, prevent overflow */
+body.preloader-active {
+  overflow: hidden;
 }
