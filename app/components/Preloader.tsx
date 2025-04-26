@@ -9,8 +9,16 @@ const Preloader = () => {
   const iconRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    // Make sure refs are available
+    if (!preloaderRef.current || !textRef.current || !iconRef.current) {
+      return;
+    }
+
     // Add loading class to body
     document.body.classList.add('loading');
+
+    // Set initial states
+    gsap.set(textRef.current, { opacity: 0, y: 20 });
 
     const tl = gsap.timeline();
 
@@ -56,6 +64,7 @@ const Preloader = () => {
     <div 
       ref={preloaderRef}
       className="fixed inset-0 bg-slate-50 flex flex-col items-center justify-center z-50"
+      style={{ minHeight: '100vh' }}
     >
       <div 
         ref={iconRef}
@@ -65,7 +74,8 @@ const Preloader = () => {
       </div>
       <div 
         ref={textRef}
-        className="text-slate-800 text-xl font-semibold opacity-0 transform translate-y-5"
+        className="text-slate-800 text-xl font-semibold"
+        style={{ opacity: 0, transform: 'translateY(5px)' }}
       >
         Huzaifa Ibrar
       </div>

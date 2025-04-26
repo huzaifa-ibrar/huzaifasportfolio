@@ -1,13 +1,7 @@
 import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBriefcase, faCalendarAlt, faMapMarkerAlt } from '@fortawesome/free-solid-svg-icons';
-
-// Register ScrollTrigger plugin
-if (typeof window !== 'undefined') {
-  gsap.registerPlugin(ScrollTrigger);
-}
 
 const Experience = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -16,53 +10,61 @@ const Experience = () => {
   const experienceItemsRef = useRef<HTMLDivElement[]>([]);
 
   useEffect(() => {
-    // Heading animation
-    gsap.fromTo(
-      headingRef.current,
-      { y: 50, opacity: 0 },
-      {
-        y: 0,
-        opacity: 1,
-        duration: 1,
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: 'top 80%',
-        }
-      }
-    );
+    // Import ScrollTrigger dynamically to avoid SSR issues
+    const registerScrollTrigger = async () => {
+      const ScrollTrigger = (await import('gsap/ScrollTrigger')).default;
+      gsap.registerPlugin(ScrollTrigger);
 
-    // Timeline animation
-    gsap.fromTo(
-      timelineRef.current,
-      { scaleY: 0, transformOrigin: 'top' },
-      {
-        scaleY: 1,
-        duration: 1.5,
-        ease: 'power3.out',
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: 'top 60%',
-        }
-      }
-    );
-
-    // Experience items animation
-    experienceItemsRef.current.forEach((item, index) => {
+      // Heading animation
       gsap.fromTo(
-        item,
-        { x: index % 2 === 0 ? -50 : 50, opacity: 0 },
+        headingRef.current,
+        { y: 50, opacity: 0 },
         {
-          x: 0,
+          y: 0,
           opacity: 1,
-          duration: 0.8,
-          delay: 0.5 + index * 0.2,
+          duration: 1,
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: 'top 80%',
+          }
+        }
+      );
+
+      // Timeline animation
+      gsap.fromTo(
+        timelineRef.current,
+        { scaleY: 0, transformOrigin: 'top' },
+        {
+          scaleY: 1,
+          duration: 1.5,
+          ease: 'power3.out',
           scrollTrigger: {
             trigger: sectionRef.current,
             start: 'top 60%',
           }
         }
       );
-    });
+
+      // Experience items animation
+      experienceItemsRef.current.forEach((item, index) => {
+        gsap.fromTo(
+          item,
+          { x: index % 2 === 0 ? -50 : 50, opacity: 0 },
+          {
+            x: 0,
+            opacity: 1,
+            duration: 0.8,
+            delay: 0.5 + index * 0.2,
+            scrollTrigger: {
+              trigger: sectionRef.current,
+              start: 'top 60%',
+            }
+          }
+        );
+      });
+    };
+    
+    registerScrollTrigger();
   }, []);
 
   // Add experience item to refs

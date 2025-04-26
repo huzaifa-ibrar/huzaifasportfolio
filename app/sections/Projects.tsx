@@ -1,14 +1,8 @@
 import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGithub, faJs, faJava, faNodeJs, faReact } from '@fortawesome/free-brands-svg-icons';
 import { faCalendarAlt, faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons';
-
-// Register ScrollTrigger plugin
-if (typeof window !== 'undefined') {
-  gsap.registerPlugin(ScrollTrigger);
-}
 
 // Project data
 const projects = [
@@ -44,38 +38,46 @@ const Projects = () => {
   const projectCardsRef = useRef<HTMLDivElement[]>([]);
 
   useEffect(() => {
-    // Heading animation
-    gsap.fromTo(
-      headingRef.current,
-      { y: 50, opacity: 0 },
-      {
-        y: 0,
-        opacity: 1,
-        duration: 1,
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: 'top 80%',
-        }
-      }
-    );
+    // Import ScrollTrigger dynamically to avoid SSR issues
+    const registerScrollTrigger = async () => {
+      const ScrollTrigger = (await import('gsap/ScrollTrigger')).default;
+      gsap.registerPlugin(ScrollTrigger);
 
-    // Project cards animation
-    projectCardsRef.current.forEach((card, index) => {
+      // Heading animation
       gsap.fromTo(
-        card,
-        { y: 70, opacity: 0 },
+        headingRef.current,
+        { y: 50, opacity: 0 },
         {
           y: 0,
           opacity: 1,
-          duration: 0.8,
-          delay: 0.2 + index * 0.2,
+          duration: 1,
           scrollTrigger: {
             trigger: sectionRef.current,
-            start: 'top 60%',
+            start: 'top 80%',
           }
         }
       );
-    });
+
+      // Project cards animation
+      projectCardsRef.current.forEach((card, index) => {
+        gsap.fromTo(
+          card,
+          { y: 70, opacity: 0 },
+          {
+            y: 0,
+            opacity: 1,
+            duration: 0.8,
+            delay: 0.2 + index * 0.2,
+            scrollTrigger: {
+              trigger: sectionRef.current,
+              start: 'top 60%',
+            }
+          }
+        );
+      });
+    };
+
+    registerScrollTrigger();
   }, []);
 
   // Add project card to refs

@@ -1,14 +1,8 @@
 import { useState, useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEnvelope, faPhone, faMapMarkerAlt, faPaperPlane } from '@fortawesome/free-solid-svg-icons';
 import { faGithub, faLinkedin } from '@fortawesome/free-brands-svg-icons';
-
-// Register ScrollTrigger plugin
-if (typeof window !== 'undefined') {
-  gsap.registerPlugin(ScrollTrigger);
-}
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -26,52 +20,60 @@ const Contact = () => {
   const contactInfoRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    // Heading animation
-    gsap.fromTo(
-      headingRef.current,
-      { y: 50, opacity: 0 },
-      {
-        y: 0,
-        opacity: 1,
-        duration: 1,
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: 'top 80%',
-        }
-      }
-    );
+    // Import ScrollTrigger dynamically to avoid SSR issues
+    const registerScrollTrigger = async () => {
+      const ScrollTrigger = (await import('gsap/ScrollTrigger')).default;
+      gsap.registerPlugin(ScrollTrigger);
 
-    // Form animation
-    gsap.fromTo(
-      formRef.current,
-      { x: -50, opacity: 0 },
-      {
-        x: 0,
-        opacity: 1,
-        duration: 1,
-        delay: 0.3,
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: 'top 60%',
+      // Heading animation
+      gsap.fromTo(
+        headingRef.current,
+        { y: 50, opacity: 0 },
+        {
+          y: 0,
+          opacity: 1,
+          duration: 1,
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: 'top 80%',
+          }
         }
-      }
-    );
+      );
 
-    // Contact info animation
-    gsap.fromTo(
-      contactInfoRef.current,
-      { x: 50, opacity: 0 },
-      {
-        x: 0,
-        opacity: 1,
-        duration: 1,
-        delay: 0.5,
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: 'top 60%',
+      // Form animation
+      gsap.fromTo(
+        formRef.current,
+        { x: -50, opacity: 0 },
+        {
+          x: 0,
+          opacity: 1,
+          duration: 1,
+          delay: 0.3,
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: 'top 60%',
+          }
         }
-      }
-    );
+      );
+
+      // Contact info animation
+      gsap.fromTo(
+        contactInfoRef.current,
+        { x: 50, opacity: 0 },
+        {
+          x: 0,
+          opacity: 1,
+          duration: 1,
+          delay: 0.5,
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: 'top 60%',
+          }
+        }
+      );
+    };
+    
+    registerScrollTrigger();
   }, []);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {

@@ -15,21 +15,26 @@ const Navbar = () => {
 
   // Animation for navbar visibility on scroll
   useEffect(() => {
+    if (!navbarRef.current) return;
+
+    // Set initial state
+    gsap.set(navbarRef.current, { y: 0 });
+    
     let lastScrollY = window.scrollY;
     
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
       
       if (currentScrollY > 100) {
-        if (currentScrollY > lastScrollY) {
-          // Scrolling down
+        if (currentScrollY > lastScrollY && currentScrollY > 300) { // Only hide when scrolled down a bit
+          // Scrolling down - hide navbar
           gsap.to(navbarRef.current, {
             duration: 0.3,
             y: -100,
             ease: 'power2.out'
           });
         } else {
-          // Scrolling up
+          // Scrolling up - show navbar
           gsap.to(navbarRef.current, {
             duration: 0.3,
             y: 0,
@@ -50,13 +55,20 @@ const Navbar = () => {
 
   // Mobile menu animation
   useEffect(() => {
-    if (menuRef.current) {
-      if (isOpen) {
-        gsap.fromTo(
-          menuRef.current,
-          { opacity: 0, y: -20 },
-          { opacity: 1, y: 0, duration: 0.3, ease: 'power2.out' }
-        );
+    if (!menuRef.current) return;
+
+    if (isOpen) {
+      // When menu opens
+      gsap.fromTo(
+        menuRef.current,
+        { opacity: 0, height: 0, y: -20 },
+        { opacity: 1, height: 'auto', y: 0, duration: 0.3, ease: 'power2.out' }
+      );
+    } else {
+      // When menu closes (if it was previously open)
+      const element = menuRef.current;
+      if (element && element.style.opacity !== '' && parseFloat(element.style.opacity) > 0) {
+        gsap.to(element, { opacity: 0, height: 0, duration: 0.3, ease: 'power2.in' });
       }
     }
   }, [isOpen]);
@@ -88,6 +100,7 @@ const Navbar = () => {
               target="_blank" 
               rel="noopener noreferrer"
               className="text-slate-700 hover:text-sky-500 transition-colors"
+              aria-label="GitHub"
             >
               <FontAwesomeIcon icon={faGithub} />
             </a>
@@ -96,6 +109,7 @@ const Navbar = () => {
               target="_blank" 
               rel="noopener noreferrer"
               className="text-slate-700 hover:text-sky-500 transition-colors"
+              aria-label="LinkedIn"
             >
               <FontAwesomeIcon icon={faLinkedin} />
             </a>
@@ -106,6 +120,7 @@ const Navbar = () => {
             <button 
               onClick={toggleMenu}
               className="text-slate-700 focus:outline-none"
+              aria-label={isOpen ? "Close menu" : "Open menu"}
             >
               <FontAwesomeIcon icon={isOpen ? faTimes : faBars} size="lg" />
             </button>
@@ -113,54 +128,56 @@ const Navbar = () => {
         </div>
         
         {/* Mobile Menu */}
-        {isOpen && (
-          <div 
-            ref={menuRef}
-            className="md:hidden bg-white py-4 opacity-0"
-          >
+        <div 
+          ref={menuRef}
+          className={`md:hidden bg-white overflow-hidden transition-all duration-300 ${isOpen ? '' : 'h-0 opacity-0'}`}
+          style={{ height: 0, opacity: 0 }}
+        >
+          <div className="py-4">
             <div className="flex flex-col space-y-4">
               <a 
                 href="#home" 
-                className="text-slate-700 hover:text-sky-500 transition-colors"
+                className="text-slate-700 hover:text-sky-500 transition-colors px-2"
                 onClick={toggleMenu}
               >
                 Home
               </a>
               <a 
                 href="#about" 
-                className="text-slate-700 hover:text-sky-500 transition-colors"
+                className="text-slate-700 hover:text-sky-500 transition-colors px-2"
                 onClick={toggleMenu}
               >
                 About
               </a>
               <a 
                 href="#experience" 
-                className="text-slate-700 hover:text-sky-500 transition-colors"
+                className="text-slate-700 hover:text-sky-500 transition-colors px-2"
                 onClick={toggleMenu}
               >
                 Experience
               </a>
               <a 
                 href="#projects" 
-                className="text-slate-700 hover:text-sky-500 transition-colors"
+                className="text-slate-700 hover:text-sky-500 transition-colors px-2"
                 onClick={toggleMenu}
               >
                 Projects
               </a>
               <a 
                 href="#contact" 
-                className="text-slate-700 hover:text-sky-500 transition-colors"
+                className="text-slate-700 hover:text-sky-500 transition-colors px-2"
                 onClick={toggleMenu}
               >
                 Contact
               </a>
               
-              <div className="flex space-x-4 pt-2">
+              <div className="flex space-x-4 pt-2 px-2">
                 <a 
                   href="https://github.com/huzaifa-ibrar" 
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="text-slate-700 hover:text-sky-500 transition-colors"
+                  aria-label="GitHub"
                 >
                   <FontAwesomeIcon icon={faGithub} />
                 </a>
@@ -169,13 +186,14 @@ const Navbar = () => {
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="text-slate-700 hover:text-sky-500 transition-colors"
+                  aria-label="LinkedIn"
                 >
                   <FontAwesomeIcon icon={faLinkedin} />
                 </a>
               </div>
             </div>
           </div>
-        )}
+        </div>
       </div>
     </nav>
   );
