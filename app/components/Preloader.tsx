@@ -1,3 +1,5 @@
+"use client";
+
 import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -63,19 +65,18 @@ const Preloader = () => {
   return (
     <div 
       ref={preloaderRef}
-      className="fixed inset-0 bg-slate-50 flex flex-col items-center justify-center z-50"
-      style={{ minHeight: '100vh' }}
+      className="fixed inset-0 bg-secondary-50 flex flex-col items-center justify-center z-50 min-h-screen"
     >
       <div 
         ref={iconRef}
-        className="text-sky-500 mb-4"
+        className="text-primary-500 mb-4"
       >
         <FontAwesomeIcon icon={faCode} size="3x" />
       </div>
       <div 
         ref={textRef}
-        className="text-slate-800 text-xl font-semibold"
-        style={{ opacity: 0, transform: 'translateY(5px)' }}
+        className="text-secondary-800 text-xl font-semibold opacity-0"
+        style={{ transform: 'translateY(5px)' }}
       >
         Huzaifa Ibrar
       </div>

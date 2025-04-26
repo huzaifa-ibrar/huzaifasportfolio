@@ -1,3 +1,5 @@
+"use client";
+
 import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -72,7 +74,9 @@ const Hero = () => {
     // Cleanup function
     return () => {
       tl.kill();
-      gsap.killTweensOf(scrollDownRef.current);
+      if (scrollDownRef.current) {
+        gsap.killTweensOf(scrollDownRef.current);
+      }
     };
   }, []);
 
@@ -87,23 +91,23 @@ const Hero = () => {
     <section 
       id="home" 
       ref={sectionRef}
-      className="min-h-screen flex items-center justify-center bg-gradient-to-b from-slate-50 to-slate-100 relative overflow-hidden"
+      className="min-h-screen flex items-center justify-center bg-gradient-to-b from-secondary-50 to-secondary-100 relative overflow-hidden"
     >
       {/* Background design elements */}
-      <div className="absolute top-20 right-10 w-64 h-64 bg-sky-100 rounded-full blur-3xl opacity-60"></div>
+      <div className="absolute top-20 right-10 w-64 h-64 bg-primary-100 rounded-full blur-3xl opacity-60"></div>
       <div className="absolute bottom-20 left-10 w-72 h-72 bg-indigo-100 rounded-full blur-3xl opacity-60"></div>
       
-      <div className="container mx-auto px-4 z-10 text-center py-16">
+      <div className="container-custom z-10 text-center py-16">
         <h1 
           ref={headingRef}
-          className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6 text-slate-800 opacity-0"
+          className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6 text-secondary-800 opacity-0"
         >
-          Hi, I'm <span className="text-sky-500">Huzaifa Ibrar</span>
+          Hi, I'm <span className="text-primary-500">Huzaifa Ibrar</span>
         </h1>
         
         <p 
           ref={subHeadingRef}
-          className="text-xl md:text-2xl text-slate-600 mb-10 max-w-3xl mx-auto opacity-0"
+          className="text-xl md:text-2xl text-secondary-600 mb-10 max-w-3xl mx-auto opacity-0"
         >
           A Full Stack Developer passionate about crafting exceptional digital experiences.
         </p>
@@ -114,14 +118,14 @@ const Hero = () => {
         >
           <a 
             href="#projects"
-            className="px-8 py-3 bg-sky-500 text-white rounded-full font-medium hover:bg-sky-600 transition-colors duration-300 shadow-md hover:shadow-lg"
+            className="btn-primary"
           >
             View My Work
           </a>
           
           <a 
             href="#contact"
-            className="px-8 py-3 border-2 border-sky-500 text-sky-500 rounded-full font-medium hover:bg-sky-50 transition-colors duration-300"
+            className="btn-outline"
           >
             Contact Me
           </a>
@@ -135,7 +139,7 @@ const Hero = () => {
             href="https://github.com/huzaifa-ibrar" 
             target="_blank" 
             rel="noopener noreferrer"
-            className="text-slate-700 hover:text-sky-500 transition-colors text-2xl"
+            className="text-secondary-700 hover:text-primary-500 transition-colors text-2xl"
             aria-label="GitHub Profile"
           >
             <FontAwesomeIcon icon={faGithub} />
@@ -144,7 +148,7 @@ const Hero = () => {
             href="https://linkedin.com/in/huzaifa-ibrar" 
             target="_blank" 
             rel="noopener noreferrer"
-            className="text-slate-700 hover:text-sky-500 transition-colors text-2xl"
+            className="text-secondary-700 hover:text-primary-500 transition-colors text-2xl"
             aria-label="LinkedIn Profile"
           >
             <FontAwesomeIcon icon={faLinkedin} />
@@ -154,12 +158,12 @@ const Hero = () => {
       
       <div 
         ref={scrollDownRef}
-        className="absolute bottom-10 left-1/2 transform -translate-x-1/2 text-slate-600 cursor-pointer opacity-0"
+        className="absolute bottom-10 left-1/2 transform -translate-x-1/2 text-secondary-600 cursor-pointer opacity-0"
         onClick={scrollToNextSection}
       >
         <div className="flex flex-col items-center">
           <span className="text-sm mb-2 font-medium">Scroll Down</span>
-          <div className="text-sky-500">
+          <div className="text-primary-500">
             <FontAwesomeIcon icon={faArrowDown} />
           </div>
         </div>

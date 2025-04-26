@@ -23,7 +23,7 @@ export default function Home() {
   }, []);
 
   return (
-    <main>
+    <main className="min-h-screen relative">
       {loading && <Preloader />}
       <Navbar />
       <Hero />
