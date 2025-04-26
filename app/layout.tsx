@@ -10,6 +10,9 @@ export const metadata: Metadata = {
   title: 'Huzaifa Ibrar | Full Stack Developer',
   description: 'Portfolio of Huzaifa Ibrar - Full Stack Developer with expertise in Java, Python, JavaScript, React, and more.',
   keywords: 'Huzaifa Ibrar, Full Stack Developer, Software Engineer, React, JavaScript, Java, Python',
+  icons: {
+    icon: '/h-favicon.ico',
+  },
 };
 
 export default function RootLayout({
