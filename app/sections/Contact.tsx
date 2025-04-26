@@ -13,6 +13,7 @@ const Contact = () => {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
+  const [errorMessage, setErrorMessage] = useState<string>('');
 
   const sectionRef = useRef<HTMLDivElement>(null);
   const headingRef = useRef<HTMLHeadingElement>(null);
@@ -84,11 +85,22 @@ const Contact = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
+    setErrorMessage('');
     
     try {
-      // This would typically be an API call to send the form data
-      // For demo purposes, we'll simulate a successful submission
-      await new Promise(resolve => setTimeout(resolve, 1500));
+      // Make an API call to our endpoint
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (!response.ok) {
+        const data = await response.json();
+        throw new Error(data.error || 'Failed to send message');
+      }
       
       setSubmitStatus('success');
       setFormData({ name: '', email: '', subject: '', message: '' });
@@ -98,11 +110,14 @@ const Contact = () => {
         setSubmitStatus('idle');
       }, 3000);
     } catch (error) {
+      console.error('Error sending message:', error);
       setSubmitStatus('error');
+      setErrorMessage(error instanceof Error ? error.message : 'Failed to send message');
       
       // Reset status after 3 seconds
       setTimeout(() => {
         setSubmitStatus('idle');
+        setErrorMessage('');
       }, 3000);
     } finally {
       setIsSubmitting(false);
@@ -214,7 +229,7 @@ const Contact = () => {
             
             {submitStatus === 'error' && (
               <div className="mt-4 p-3 bg-red-100 border border-red-400 text-red-700 rounded">
-                There was an error sending your message. Please try again.
+                {errorMessage || 'There was an error sending your message. Please try again.'}
               </div>
             )}
           </form>
