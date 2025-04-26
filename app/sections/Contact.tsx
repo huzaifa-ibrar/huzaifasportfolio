@@ -97,11 +97,13 @@ const Contact = () => {
         body: JSON.stringify(formData),
       });
 
+      const data = await response.json();
+      
       if (!response.ok) {
-        const data = await response.json();
         throw new Error(data.error || 'Failed to send message');
       }
       
+      console.log('Success response:', data);
       setSubmitStatus('success');
       setFormData({ name: '', email: '', subject: '', message: '' });
       
@@ -114,11 +116,11 @@ const Contact = () => {
       setSubmitStatus('error');
       setErrorMessage(error instanceof Error ? error.message : 'Failed to send message');
       
-      // Reset status after 3 seconds
+      // Reset status after 6 seconds to give more time to read the error
       setTimeout(() => {
         setSubmitStatus('idle');
         setErrorMessage('');
-      }, 3000);
+      }, 6000);
     } finally {
       setIsSubmitting(false);
     }

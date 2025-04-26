@@ -13,19 +13,33 @@ export async function POST(request: Request) {
       );
     }
 
+    console.log('Creating email transporter with credentials:', {
+      user: process.env.EMAIL_USER ? 'Email provided' : 'Email missing',
+      pass: process.env.EMAIL_PASS ? 'Password provided' : 'Password missing',
+    });
+
     // Configure your email service for Hotmail/Outlook
+    // Use a more reliable configuration for Outlook
     const transporter = nodemailer.createTransport({
-      host: 'smtp-mail.outlook.com',
-      port: 587,
-      secure: false, // true for 465, false for other ports
+      service: 'outlook',
       auth: {
         user: process.env.EMAIL_USER,
         pass: process.env.EMAIL_PASS,
       },
-      tls: {
-        ciphers: 'SSLv3'
-      }
+      debug: true, // Enable debug mode
     });
+
+    // Test the connection
+    try {
+      await transporter.verify();
+      console.log('SMTP connection verified successfully');
+    } catch (verifyError: any) {
+      console.error('SMTP verification failed:', verifyError);
+      return NextResponse.json(
+        { error: `SMTP verification failed: ${verifyError.message || 'Unknown error'}` },
+        { status: 500 }
+      );
+    }
 
     // Define email options
     const mailOptions = {
@@ -43,17 +57,32 @@ export async function POST(request: Request) {
       `,
     };
 
-    // Send the email
-    await transporter.sendMail(mailOptions);
+    console.log('Attempting to send email with options:', {
+      from: mailOptions.from,
+      to: mailOptions.to,
+      subject: mailOptions.subject
+    });
 
+    // Send the email
+    try {
+      const info = await transporter.sendMail(mailOptions);
+      console.log('Email sent successfully:', info.response);
+      
+      return NextResponse.json(
+        { message: 'Email sent successfully', info: info.response },
+        { status: 200 }
+      );
+    } catch (sendError: any) {
+      console.error('Failed to send email:', sendError);
+      return NextResponse.json(
+        { error: `Failed to send email: ${sendError.message || 'Unknown error'}` },
+        { status: 500 }
+      );
+    }
+  } catch (error: any) {
+    console.error('Error processing request:', error);
     return NextResponse.json(
-      { message: 'Email sent successfully' },
-      { status: 200 }
-    );
-  } catch (error) {
-    console.error('Error sending email:', error);
-    return NextResponse.json(
-      { error: 'Failed to send email' },
+      { error: `Error processing request: ${error.message || 'Unknown error'}` },
       { status: 500 }
     );
   }
